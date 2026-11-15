@@ -81,6 +81,14 @@ public class SuperCloneCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFieldAccess() throws Exception {
+        final String[] expected = {
+            "16:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
+        };
+        verifyWithInlineConfigParser(getPath("InputSuperCloneFieldAccess.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final SuperCloneCheck check = new SuperCloneCheck();
         assertWithMessage("Acceptable tokens should not be null")

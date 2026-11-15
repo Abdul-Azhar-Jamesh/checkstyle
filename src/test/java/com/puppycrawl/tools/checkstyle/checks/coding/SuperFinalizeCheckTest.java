@@ -53,6 +53,14 @@ public class SuperFinalizeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFieldAccess() throws Exception {
+        final String[] expected = {
+            "16:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+        };
+        verifyWithInlineConfigParser(getPath("InputSuperFinalizeFieldAccess.java"), expected);
+    }
+
+    @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
             "13:13: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),

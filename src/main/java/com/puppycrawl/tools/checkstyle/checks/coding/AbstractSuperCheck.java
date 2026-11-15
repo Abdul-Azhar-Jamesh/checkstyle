@@ -107,7 +107,8 @@ public abstract class AbstractSuperCheck extends AbstractCheck {
         if (!isSameNameMethod(literalSuperAst)) {
             final DetailAST parent = literalSuperAst.getParent();
             if (parent.getType() == TokenTypes.METHOD_REF
-                || !hasArguments(parent)) {
+                || parent.getParent().getType() == TokenTypes.METHOD_CALL
+                    && !hasArguments(parent)) {
                 superCall = isSuperCallInOverridingMethod(parent);
             }
         }
